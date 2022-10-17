@@ -13,9 +13,7 @@
 - Must have a wallet cap (limit per wallet) of 2 for the private sale, and 5 for the public sale
 - Base URI must change every day - loops every 3 days:
 
-| https://api.dayone.com/ |
-| https://api.daytwo.com/ |
-| https://api.daythree.com/ |
+[ https://api.dayone.com/, https://api.daytwo.com/, https://api.daythree.com/ ]
 
 **Tips**
 
