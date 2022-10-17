@@ -14,7 +14,6 @@
 - Base URI must change every day - loops every 3 days:
 
 | https://api.dayone.com/ |
-| --- |
 | https://api.daytwo.com/ |
 | https://api.daythree.com/ |
 
