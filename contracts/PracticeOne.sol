@@ -2,8 +2,9 @@
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/interfaces/IERC2981.sol";
 
-contract PracticeOne is ERC721 {
+contract PracticeOne is ERC721, IERC2981 {
     bool public paused;
 
     mapping(address => bool) public admins;
@@ -117,8 +118,13 @@ contract PracticeOne is ERC721 {
         }
     }
 
-    function royaltyInfo(uint256, uint256 value) external virtual view returns (address, uint256) {
-        return (royaltyRecipient, value / 10);
+    function royaltyInfo(uint256, uint256 salePrice)
+        external
+        view
+        override
+        returns (address receiver, uint256 royaltyAmount)
+    {
+        return (royaltyRecipient, salePrice / 10);
     }
 
     function _beforeTokenTransfer(
@@ -127,11 +133,11 @@ contract PracticeOne is ERC721 {
         uint256 tokenId
     ) internal override whenNotPaused {}
 
-    function supportsInterface(bytes4 interfaceId) public view override returns (bool) {
+    function supportsInterface(bytes4 interfaceId) public view override(ERC721, IERC165) returns (bool) {
         bytes4 ID_IERC2981 = 0x2a55205a;
 
         return
-            super.supportsInterface(interfaceId) ||
+            ERC721.supportsInterface(interfaceId) ||
             interfaceId == ID_IERC2981;
     }
 }
