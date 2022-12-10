@@ -6,8 +6,8 @@ describe("Practice1", () => {
     beforeEach(async () => {
         [owner, addr1, addr2] = await ethers.getSigners()
 
-        c = await ethers.getContractFactory("PracticeOne")
-        contract = await c.deploy()
+        practiceOne = await ethers.getContractFactory("PracticeOne")
+        contract = await practiceOne.deploy()
 
         await contract.toggleAllowlist([addr1.address])
     })
@@ -90,7 +90,7 @@ describe("Practice1", () => {
         })
 
         it("Contract supports all necessary ERC2981 functions", async () => {
-            expect(contract.hasOwnProperty("balanceOf")).to.equal(true)
+            expect(contract.hasOwnProperty("royaltyInfo")).to.equal(true)
         })
     })
 
@@ -164,8 +164,8 @@ describe("Practice1", () => {
         })
     })
 
-    describe("Must have a maximum supply of 10000", () => {
-        it("No more than 10000 tokens can be minted", async () => {
+    describe("Must have a maximum supply of 1000", () => {
+        it("No more than 1000 tokens can be minted", async () => {
             await contract.beginSale()
             await helpers.setBalance(owner.address, ethers.utils.parseEther("100"))
             await contract.reserve(999)
