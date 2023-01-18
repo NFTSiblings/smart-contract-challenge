@@ -130,6 +130,7 @@ contract PracticeOne is ERC721, IERC2981 {
     function _beforeTokenTransfer(
         address from,
         address to,
+        uint256,
         uint256 tokenId
     ) internal override whenNotPaused {}
 

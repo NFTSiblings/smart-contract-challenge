@@ -200,6 +200,7 @@ describe("Practice1", () => {
 
             // Correct amount
             await expect(contract.connect(addr1).mint(2, { value: ethers.utils.parseEther("0.02") }))
+            .not.to.be.reverted
         })
 
         it("Mint function accepts the correct amount of Ether during public sale", async () => {
@@ -219,6 +220,7 @@ describe("Practice1", () => {
 
             // Correct amount
             await expect(contract.connect(addr2).mint(2, { value: ethers.utils.parseEther("0.06") }))
+            .not.to.be.reverted
         })
     })
 
